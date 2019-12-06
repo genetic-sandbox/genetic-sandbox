@@ -1,7 +1,45 @@
 {:paths ["src"]
 
  :deps
- {org.clojure/clojure {:mvn/version "1.10.1"}}
+ {org.clojure/clojure {:mvn/version "1.10.1"}
+
+  ;; lwjgl (graphics)
+  org.lwjgl/lwjgl        {:mvn/version "3.2.3"}
+  org.lwjgl/lwjgl-assimp {:mvn/version "3.2.3"}
+  org.lwjgl/lwjgl-glfw   {:mvn/version "3.2.3"}
+  org.lwjgl/lwjgl-openal {:mvn/version "3.2.3"}
+  org.lwjgl/lwjgl-opengl {:mvn/version "3.2.3"}
+  org.lwjgl/lwjgl-stb    {:mvn/version "3.2.3"}
+  }
 
  :aliases
- {:dev {:extra-paths ["dev"]}}}
+ {:dev     {:extra-paths ["dev"]}
+  :mac     {:extra-deps {;; lwjgl (mac)
+                         org.lwjgl/lwjgl$natives-macos        {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-assimp$natives-macos {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-glfw$natives-macos   {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-openal$natives-macos {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-opengl$natives-macos {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-stb$natives-macos    {:mvn/version "3.2.3"}}
+            :jvm-opts   ["-XstartOnFirstThread" "-Djava.awt.headless=true"]
+            }
+  :windows {:extra-deps {;; lwjgl (windows)
+                         org.lwjgl/lwjgl$natives-windows        {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-assimp$natives-windows {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-glfw$natives-windows   {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-openal$natives-windows {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-opengl$natives-windows {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-stb$natives-windows    {:mvn/version "3.2.3"}}}
+  :linux   {:extra-deps {;; lwjgl (linux)
+                         org.lwjgl/lwjgl$natives-linux        {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-assimp$natives-linux {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-glfw$natives-linux   {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-openal$natives-linux {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-opengl$natives-linux {:mvn/version "3.2.3"}
+                         org.lwjgl/lwjgl-stb$natives-linux    {:mvn/version "3.2.3"}}}
+  :cider   {:extra-deps {nrepl             {:mvn/version "0.6.0"}
+                         refactor-nrepl    {:mvn/version "2.5.0-SNAPSHOT"}
+                         cider/cider-nrepl {:mvn/version "0.22.4"}}}
+  :rebel   {:extra-deps {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+            :main-opts  ["-m" "rebel-readline.main"]}
+  }}
